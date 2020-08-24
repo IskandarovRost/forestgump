@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://menuItemBrowse.caption"
+        focusComponent="menuItemsTable"
+        messagesPack="com.company.forestgump.web.screens.menuitem">
+    <data readOnly="true">
+        <collection id="menuItemsDc"
+                    class="com.company.forestgump.entity.MenuItem">
+            <view extends="_local"/>
+            <loader id="menuItemsDl">
+                <query>
+                    <![CDATA[select e from forestgump_MenuItem e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="menuItemsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="menuItemsTable"
+                dataLoader="menuItemsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="menuItemsTable"
+                    width="100%"
+                    dataContainer="menuItemsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="price"/>
+                <column id="description"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="menuItemsTable.create"/>
+                <button id="editBtn" action="menuItemsTable.edit"/>
+                <button id="removeBtn" action="menuItemsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

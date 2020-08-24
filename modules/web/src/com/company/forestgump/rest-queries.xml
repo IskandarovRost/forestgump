@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<queries xmlns="http://schemas.haulmont.com/cuba/rest-queries.xsd">
+    <query name="orderBystatus" entity="forestgump_Order" view="order-view">
+        <jpql><![CDATA[select o from forestgump_Order o where o.status = :status]]></jpql>
+        <params>
+            <param name="status" type="java.lang.Integer"/>
+        </params>
+    </query>
+    <query name="menuItems" entity="forestgump_MenuItem" view="_local">
+        <jpql><![CDATA[select i from forestgump_MenuItem i order by i.name]]></jpql>
+    </query>
+</queries>
